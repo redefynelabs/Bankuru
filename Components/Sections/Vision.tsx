@@ -63,7 +63,7 @@ const Vision = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center  inline-block text-white"
       >
-        Our vision
+        Our Vision
       </motion.h1>
 
       <div className='grid md:grid-cols-2 grid-cols-1 gap-4 md:px-15 px-5'>

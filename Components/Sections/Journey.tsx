@@ -358,7 +358,7 @@ const Journey = () => {
       >
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 xl:max-w-6xl max-w-4xl w-full">
           <span className="text-[#FFFDFA] xl:text-[24px] lg:text-[20px] font-semibold text-right md:flex-1">
-            The Begining
+            The Beginning
           </span>
           <div className="flex-shrink-0">
             <Image

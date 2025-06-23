@@ -36,7 +36,7 @@ const Mission: React.FC = () => {
       title: "We're currently a lean team — and we're always open to passionate interns, collaborators, or early teammates",
     },
     {
-      title: "Whether you're a designer, developer, strategist, or just curious and driven — if you believe in what we're building, let's talk"
+      title: "Whether you're a designer, developer, strategist, or just curious and driven — if you believe in what we're building, let's talk!"
     },
     {
       title: "No degree? No problem. We care about skill, mindset, and your drive to build — not your resume"

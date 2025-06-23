@@ -40,13 +40,13 @@ const Footer = () => {
       link: 'google.com', name: 'Licensing'
     },
     {
-      link: 'google.com', name: 'Terms & Condiiton'
+      link: 'google.com', name: 'Terms & Condition'
     },
     {
       link: 'google.com', name: 'Privacy Policy'
     },
     {
-      link: 'google.com', name: 'Cookie Ploicy'
+      link: 'google.com', name: 'Cookie Policy'
     },
 
   ]
@@ -228,10 +228,22 @@ const Footer = () => {
 
               <div className='flex flex-col text-center text-[#807F7D]'>
                 <span>Email : contact@bankuruservices.com</span>
-                <span>Phone No. : 144 - 23940193</span>
-                <span>Address : 123 Innovation Drive, Tech City, TC 12345</span>
+                <span>Phone No : +91 9412 413 413</span>
+                <span>Address : Hyderabad, Telangana, India.</span>
               </div>
 
+
+              <div className='flex flex-wrap items-center justify-center gap-4 text-center'>
+              {mobileContents.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.link}
+                  className=" text-[#807F7D] text-[12px] cursor-pointer  hover:underline whitespace-nowrap"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
 
               <div className='pb-5 md:pb-5 text-white'>
                 © Designed &  Developed by  <Link href={'https://www.theinternetcompany.one/'} target="_blank" rel="noopener noreferrer" className='hover:underline'>TIC GLOBAL</Link>.
@@ -440,9 +452,12 @@ const Footer = () => {
 
           <div className='flex flex-col text-start text-[#807F7D]'>
             <span>Email : contact@bankuruservices.com</span>
-            <span>Phone No. : 144 - 23940193</span>
-            <span>Address : 123 Innovation Drive, Tech City, TC 12345</span>
+            <span>Phone No :+91 9412 413 413</span>
+            <span>Address : Hyderabad, Telangana, India.</span>
           </div>
+
+
+          
 
 
           <form onSubmit={handleSubmit} className="w-full flex flex-col space-y-6 bg-transparent" suppressHydrationWarning>

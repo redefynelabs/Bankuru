@@ -47,22 +47,22 @@ const Message = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="font-bold xl:text-[42px] lg:text-[35px] md:text-[30px] text-[20px] md:text-start text-center w-full text-white"
           >
-            A Message from Our CEO
+          Our Founder
           </motion.h1>
           <div className="flex md:flex-row flex-col space-y-5 justify-between items-center w-full">
             <div className="flex flex-row justify-center space-x-2 items-center">
               <Image src={PlaceHolder} alt='new image' className='md:w-20 md:h-20 w-15 h-15' />
               <div>
                 <h1 className='whitespace-nowrap xl:text-[24px] lg:text-[20px] md:text-[18px] text-[18px] text-[#FFFDFA]'>
-                  John Deo
+                  Koushik
                 </h1>
-                <p className='xl:text-[18px] lg:text-[16px] md:text-[14px] text-[12px] text-[#FFFDFA]'>
-                  CEO
-                </p>
+                {/* <p className='xl:text-[18px] lg:text-[16px] md:text-[14px] text-[12px] text-[#FFFDFA]'>
+                  Founder
+                </p> */}
               </div>
             </div>
-            <p className='xl:max-w-2xl lg:max-w-2xl md:max-w-xl max-w-[290px] xl:text-[20px] lg:text-[18px] md:text-[16px] text-[12px] text-[#BEBCBA] xl:leading-6 lg:leading-5 md:leading-5'>
-              Hi, I'm John Doe, the founder of Bankuru Services. I started this journey with a vision to build solutions that truly make life better — not just for markets, but for people. If you're someone who believes in this vision too
+            <p className='xl:max-w-2xl lg:max-w-2xl md:max-w-xl max-w-[290px] xl:text-[20px] lg:text-[18px] md:text-[16px] text-[12px] text-[#BEBCBA] xl:leading-6 lg:leading-5 md:leading-5 -mt-6'>
+              Hi, I'm Koushik, the founder of Bankuru Services. I started this journey with a vision to build solutions that truly make life better — not just for markets, but for people.
             </p>
           </div>
         </div>
