@@ -3,8 +3,9 @@ import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { CompanyLogo, InstaLogo, LinkLogo, xLogo, YouLogo } from '../ReuseableComponents/Icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { link } from 'fs';
-import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 interface FormData {
   name: string;
@@ -49,7 +50,6 @@ const Footer = () => {
     {
       link: 'google.com', name: 'Cookie Policy'
     },
-
   ]
 
   const contents = [
@@ -64,15 +64,12 @@ const Footer = () => {
     {
       image: xLogo,
       link:'https://x.com/bankuruservices?s=11'
-
     },
     {
       image: YouLogo,
       link:'https://www.instagram.com/bankuruservices?igsh=OTA1aW1xd3Q4b2x1&utm_source=qr'
-
     },
   ]
-
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -122,30 +119,59 @@ const Footer = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-  
-    const serviceID = 'service_0g4kkcp'; 
-    const templateID = 'template_j9qx8b9'; 
-    const userID = 'ZxE38hVwrigigRci-';
+    
+    if (!validateForm()) {
+      return;
+    }
   
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    
+    const timestamp = new Date().toISOString();
   
-    emailjs
-      .send(serviceID, templateID, formData, userID)
-      .then((response) => {
-        console.log('Email sent successfully!', response);
-        alert('Your quote request has been sent!');
-        setFormData({ name: '', email: '', contact: '', website: '', message: '' }); 
-        setSubmitStatus('success');
-      })
-      .catch((error) => {
-        console.error('Error sending email:', error);
-        alert('Something went wrong. Please try again.');
-        setSubmitStatus('error');
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyVwxVJokys22lF1GRAO6mk4_0A_Nj6vbjxzGA7RzqBgQBKw3vNXZt_Pz9vdQmjhxPf/exec", {
+        method: "POST",
+        body: JSON.stringify({ 
+          ...formData, 
+          timestamp 
+        }),
       });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log('Success:', result);
+  
+      if (result.status === "success") {
+        setSubmitStatus('success');
+        toast.success("Message sent successfully!");
+  
+        setFormData({
+          name: '',
+          email: '',
+          contact: '',
+          website: '',
+          message: ''
+        });
+        setErrors({});
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitStatus('error');
+  
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        toast.error("Network error. Please check your internet connection and try again.");
+      } else {
+        toast.error("Something went wrong! Please try again later.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
 
@@ -171,7 +197,7 @@ const Footer = () => {
 
   return (
     <div id='contact-section' className="w-full md:bg-[#0C0C0C] bg-transparent">
-      <div  className="relative w-full hidden md:block">
+      <div className="relative w-full hidden md:block">
 
         {/* video */}
         <div className="relative w-full h-[200px] overflow-hidden">
@@ -196,7 +222,6 @@ const Footer = () => {
           </div>
         </div>
 
-
         {/* Footer */}
         <div className='flex flex-col space-y-5 justify-center bg-[#0C0C0C] items-center w-full '>
           <div className="w-full grid md:grid-cols-2 grid-cols-1 gap-[25px] md:h-[545px] h-auto mt-5 px-[23px]">
@@ -208,10 +233,6 @@ const Footer = () => {
                   alt="Company Logo"
                   className="w-[672px] h-[92px] object-contain"
                 />
-                {/* <h1 className='font-bold text-[30px] leading-8 text-[#FFFDFA]'>
-                  Bankuru Services <br />
-                  Pvt. Ltd.
-                </h1> */}
               </div>
 
               <div className='flex flex-col text-center text-[#807F7D]'>
@@ -220,26 +241,22 @@ const Footer = () => {
                 <span>Address : Hyderabad, Telangana, India.</span>
               </div>
 
-
               <div className='flex flex-wrap items-center justify-center gap-4 text-center'>
-              {mobileContents.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.link}
-                  className=" text-[#807F7D] text-[12px] cursor-pointer  hover:underline whitespace-nowrap"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+                {mobileContents.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.link}
+                    className=" text-[#807F7D] text-[12px] cursor-pointer  hover:underline whitespace-nowrap"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
 
               <div className='pb-5 md:pb-5 text-white'>
                 © Designed &  Developed by  <Link href={'https://www.theinternetcompany.one/'} target="_blank" rel="noopener noreferrer" className='hover:underline'>TIC GLOBAL</Link>.
               </div>
             </div>
-
-
-
 
             {/* Right side */}
             <div className="bg-[#121212] w-full flex flex-col items-center justify-center rounded-[28px] px-6 py-8">
@@ -301,7 +318,6 @@ const Footer = () => {
                     </span>
                   )}
                 </div>
-
 
                 <div className="flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-6 md:gap-8">
                   <div className="flex flex-col space-y-3 sm:space-y-4 w-full">
@@ -393,46 +409,51 @@ const Footer = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className='bg-transparent border-1 border-[#FFFFFF2E] w-full px-4 py-3 rounded-[30px] mt-7 cursor-pointer hover:bg-[#FFFFFF33] text-white'
+                  className='bg-transparent border-1 border-[#FFFFFF2E] w-full px-4 py-3 rounded-[30px] mt-7 cursor-pointer hover:bg-[#FFFFFF33] text-white disabled:opacity-50 disabled:cursor-not-allowed'
                   suppressHydrationWarning
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
+
+                {/* Status Messages */}
+                {/* {submitStatus === 'success' && (
+                  <div className="text-green-400 text-sm text-center">
+                    Message sent successfully!
+                  </div>
+                )}
+                {submitStatus === 'error' && (
+                  <div className="text-red-400 text-sm text-center">
+                    Failed to send message. Please try again.
+                  </div>
+                )} */}
               </form>
             </div>
-
           </div>
-
 
           <div className="grid grid-cols-2 w-full h-[80px] rounded-[28px] md:grid-cols-4 gap-4 px-[48.5px] mb-5">
             {contents.map((item, index) => (
-              <Link href={item.link}  target="_blank"
-  rel="noopener noreferrer"
+              <Link 
+                href={item.link}  
+                target="_blank"
+                rel="noopener noreferrer"
                 key={index}
                 className="flex items-center justify-center bg-[#121212] rounded-lg  transition-colors duration-200"
               >
-               
                 <Image
                   src={item.image}
                   alt={`Social icon ${index}`}
                   className="h-8 w-8 object-contain"
                 />
-                
               </Link>
             ))}
           </div>
-
-
-
         </div>
       </div>
 
-
       {/* mobile */}
-      <div  className="relative w-full block md:hidden px-5 -mt-50 ">
+      <div className="relative w-full block md:hidden px-5 -mt-50 ">
         <div className=" h-full flex flex-col space-y-10 justify-center items-start rounded-[28px] px-5 bg-[#2D34674A]">
           <div className="flex flex-row gap-2 items-start justify-center  mt-8 ">
-
             <h1 className='font-bold text-[30px] leading-8 text-white'>
               Be Part of the Journey
             </h1>
@@ -443,10 +464,6 @@ const Footer = () => {
             <span>Phone No :+91 9412 413 413</span>
             <span>Address : Hyderabad, Telangana, India.</span>
           </div>
-
-
-          
-
 
           <form onSubmit={handleSubmit} className="w-full flex flex-col space-y-6 bg-transparent" suppressHydrationWarning>
             {/* Name Field */}
@@ -506,7 +523,6 @@ const Footer = () => {
                 </span>
               )}
             </div>
-
 
             <div className="flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-6 md:gap-8">
               <div className="flex flex-col space-y-3 sm:space-y-4 w-full">
@@ -598,13 +614,24 @@ const Footer = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className='bg-transparent border-1 border-[#FFFFFF2E] max-w-md mx-auto px-8 py-3 rounded-[30px] mt-7 cursor-pointer hover:bg-[#FFFFFF33] text-white'
+              className='bg-transparent border-1 border-[#FFFFFF2E] max-w-md mx-auto px-8 py-3 rounded-[30px] mt-7 cursor-pointer hover:bg-[#FFFFFF33] text-white disabled:opacity-50 disabled:cursor-not-allowed'
               suppressHydrationWarning
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
-          </form>
 
+            {/* Status Messages */}
+            {/* {submitStatus === 'success' && (
+              <div className="text-green-400 text-sm text-center">
+                Message sent successfully!
+              </div>
+            )}
+            {submitStatus === 'error' && (
+              <div className="text-red-400 text-sm text-center">
+                Failed to send message. Please try again.
+              </div>
+            )} */}
+          </form>
 
           <div className='flex flex-col items-center justify-center w-[237px] mx-auto space-y-5 bg-transparent'>
             <div className='flex flex-wrap items-center justify-center gap-4 text-center'>
@@ -619,20 +646,14 @@ const Footer = () => {
               ))}
             </div>
 
-
-
-
             <p className='pb-5 md:pb-5 text-[12px] text-white'>
               © Designed &  Developed by  <Link href={'https://www.theinternetcompany.one/'} target="_blank" rel="noopener noreferrer" className='hover:underline'>TIC GLOBAL</Link>.
             </p>
           </div>
-
-
         </div>
-
       </div>
+      <ToastContainer />
     </div>
-
   );
 };
 
