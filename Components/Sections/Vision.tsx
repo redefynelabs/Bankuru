@@ -55,7 +55,6 @@ const Vision = () => {
 
   return (
     <div id='vision-section' className="relative flex flex-col md:space-y-15 space-y-5 bg-transparent  w-full">
-
       <motion.h1
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
@@ -68,7 +67,6 @@ const Vision = () => {
 
       <div className='grid md:grid-cols-2 grid-cols-1 gap-4 md:px-15 px-5'>
         {contents.map((content, index) => (
-
           <motion.div
             key={index}
             className="relative flex flex-col items-center justify-center bg-[linear-gradient(220.79deg,_rgba(255,255,255,0.1)_0%,_rgba(45,52,103,0.2)_100%)] rounded-[20px] xl:h-[252px] lg:h-[200px] md:h-[150px] sm:h-[150px] h-[130px]  overflow-hidden group cursor-pointer"

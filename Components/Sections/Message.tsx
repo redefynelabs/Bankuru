@@ -49,7 +49,7 @@ const Message = () => {
           >
           Our Founder
           </motion.h1>
-          <div className="flex md:flex-row flex-col space-y-5 justify-between items-center w-full">
+          <div className="flex md:flex-row flex-col space-y-9 justify-between items-center w-full">
             <div className="flex flex-row justify-center space-x-2 items-center">
               <Image src={PlaceHolder} alt='new image' className='md:w-20 md:h-20 w-15 h-15' />
               <div>
@@ -61,7 +61,7 @@ const Message = () => {
                 </p> */}
               </div>
             </div>
-            <p className='xl:max-w-2xl lg:max-w-2xl md:max-w-xl max-w-[290px] xl:text-[20px] lg:text-[18px] md:text-[16px] text-[12px] text-[#BEBCBA] xl:leading-6 lg:leading-5 md:leading-5 -mt-6'>
+            <p className=' md:text-start text-center xl:max-w-2xl lg:max-w-2xl md:max-w-xl max-w-[290px] xl:text-[20px] lg:text-[18px] md:text-[16px] text-[12px] text-[#BEBCBA] xl:leading-6 lg:leading-5 md:leading-5 -mt-6'>
               Hi, I'm Koushik, the founder of Bankuru Services. I started this journey with a vision to build solutions that truly make life better — not just for markets, but for people.
             </p>
           </div>

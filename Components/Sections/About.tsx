@@ -19,37 +19,37 @@ const About = () => {
       
           </h1> */}
           <motion.h1
-      ref={ref}
-      initial={{ opacity: 0, y: 0 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center  inline-block text-white"
-    >
-         About us
-    </motion.h1>
+            ref={ref}
+            initial={{ opacity: 0, y: 0 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center  inline-block text-white"
+          >
+            About us
+          </motion.h1>
           <p className="text-[#BEBCBA] xl:text-[20px] lg:text-[18px] md:text-[16px] ipad10:text-[100px] text-[12px] xl:leading-6 lg:leading-5 md:leading-4 leading-3 lg:text-start text-center flex flex-col">
             Bankuru Services Private Limited is a modern startup studio <br /> based in
             India. <br /> <span className='mt-3'> We focus on designing scalable, impactful
-            solutions across industries — rooted in innovation, simplicity, and <br /> 
-            long-term vision.  We're currently building behind the scenes to
-            create tools, platforms, and experiences that redefine how people
-            live, work, and connect.</span> 
+              solutions across industries — rooted in innovation, simplicity, and <br />
+              long-term vision.  We're currently building behind the scenes to
+              create tools, platforms, and experiences that redefine how people
+              live, work, and connect.</span>
           </p>
         </div>
 
         {/* 3D mode */}
         <div className="max-w-[50%] ">
-            <Image
-              src="https://res.cloudinary.com/dek8wxl7o/image/upload/v1750075876/for-ios_nffr0f.gif"
-              alt="building"
-              width={1000}
-              height={1000}
-              className='object-cover w-full md:h-[500px] h-[230px]'
-              style={{
-                willChange: 'auto',
-                backfaceVisibility: 'hidden'
-              }}
-            />
+          <Image
+            src="https://res.cloudinary.com/dek8wxl7o/image/upload/v1750075876/for-ios_nffr0f.gif"
+            alt="building"
+            width={1000}
+            height={1000}
+            className='object-cover w-full md:h-[500px] h-[230px]'
+            style={{
+              willChange: 'auto',
+              backfaceVisibility: 'hidden'
+            }}
+          />
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { CompanyLogo, InstaLogo, LinkLogo, xLogo, YouLogo } from '../ReuseableCo
 import Image from 'next/image';
 import Link from 'next/link';
 import { link } from 'fs';
+import emailjs from 'emailjs-com';
 
 interface FormData {
   name: string;
@@ -22,7 +23,7 @@ interface FormErrors {
 }
 
 const Footer = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<Record<string, string>>({
     name: '',
     email: '',
     contact: '',
@@ -121,45 +122,32 @@ const Footer = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
+  
+    const serviceID = 'service_0g4kkcp'; 
+    const templateID = 'template_j9qx8b9'; 
+    const userID = 'ZxE38hVwrigigRci-';
+  
     setIsSubmitting(true);
     setSubmitStatus('idle');
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
+  
+    emailjs
+      .send(serviceID, templateID, formData, userID)
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        alert('Your quote request has been sent!');
+        setFormData({ name: '', email: '', contact: '', website: '', message: '' }); 
         setSubmitStatus('success');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          contact: '',
-          website: '',
-          message: ''
-        });
-        setErrors({});
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || 'Failed to submit form');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+      })
+      .catch((error) => {
+        console.error('Error sending email:', error);
+        alert('Something went wrong. Please try again.');
+        setSubmitStatus('error');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
+  
 
   const handleFocus = (field: string) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     setFocusedField(field);
