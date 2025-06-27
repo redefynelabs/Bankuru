@@ -99,7 +99,7 @@ const Building = () => {
           variants={slideInLeft}
           className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden"
         >
-          <Image
+          <Image unoptimized 
             src={BuildingImage1}
             alt="AI Tools"
             className="w-full md:h-full h-[300px] object-cover"
@@ -134,7 +134,7 @@ const Building = () => {
               animate={isBlock1InView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <Image src={BioAlphaLogo} alt="BioAlphaLogo" className='w-80' />
+              <Image unoptimized  src={BioAlphaLogo} alt="BioAlphaLogo" className='w-80' />
             </motion.div>
           </div>
         </motion.div>
@@ -147,25 +147,25 @@ const Building = () => {
           variants={slideInRight}
           className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden"
         >
-          <Image
+          <Image unoptimized 
             src={BuildingImage2}
             alt="AI Tools"
             className="w-full md:h-full h-[320px] object-cover"
           />
-          <div className='absolute inset-0 flex md:flex-row flex-col md:mt-10 justify-between items-center text-center md:px-24 md:py-6 md:-mt-10 md:space-y-2'>
+          <div className='absolute inset-0 flex md:flex-row flex-col  justify-between items-center text-center md:px-24 md:py-6 md:-mt-10 md:space-y-2'>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isBlock2InView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <Image src={QuickCook} alt="QuickCook" className='md:w-90 md:h-auto w-34 h-[150px]' />
+              <Image unoptimized  src={QuickCook} alt="QuickCook" className='md:w-90 md:h-auto w-34 h-[150px]' />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={isBlock2InView ? { opacity: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col justify-center md:items-end items-center text-center px-4 md:py-6 md:py-3 pb-10 md:space-y-2"
+              className="flex flex-col justify-center md:items-end items-center text-center px-4 md:py-6  pb-10 md:space-y-2"
             >
               <h2 className="text-xl sm:text-2xl md:text-3xl text-end font-semibold text-white">
                 Quick 2 Cook

@@ -13,7 +13,7 @@ const BGCircleLayout: React.FC<BGCircleLayoutProps> = ({ children }) => {
       <div className="absolute inset-0 -z-50 flex flex-col h-full 2xl:-mt-130 lg:-mt-90 md:-mt-70 sm:-mt-50 -mt-20">
         {Array.from({ length: 15 }).map((_, index) => (
           <div key={index} className="relative flex-1 w-full h-full">
-            <Image
+            <Image unoptimized 
               src={Circle1}
               alt={`Background ${index + 1}`}
               width={1000}

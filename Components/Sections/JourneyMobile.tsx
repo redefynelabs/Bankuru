@@ -311,7 +311,7 @@ const JourneyMobile = () => {
             <h1 className="text-[24px] text-[#FFFDFA]">The Beginning</h1>
 
             <div className="relative mb-4">
-              <Image
+              <Image unoptimized 
                 src={Begining}
                 alt="beginning"
                 width={120}
@@ -336,7 +336,7 @@ const JourneyMobile = () => {
           >
             <h1 className="text-[24px] text-[#FFFDFA]">What's Ahead?</h1>
             <div className="relative mb-4">
-              <Image
+              <Image unoptimized 
                 src={Way}
                 alt="way"
                 width={120}
@@ -362,7 +362,7 @@ const JourneyMobile = () => {
             <h1 className="text-[24px] text-[#FFFDFA]">Milestone One</h1>
 
             <div className="relative mb-4">
-              <Image
+              <Image unoptimized 
                 src={One}
                 alt="milestone"
                 width={120}
@@ -402,7 +402,7 @@ const JourneyMobile = () => {
           {/* 2026 */}
           <div 
             ref={year2026Ref}
-            className="flex flex-col items-center text-center space-y-2 mt-3 py-6 sm:py-8 mt-5"
+            className="flex flex-col items-center text-center space-y-2 py-6 sm:py-8 mt-5"
           >
             <div className="w-24 h-12 xs:w-28 xs:h-14 sm:w-32 sm:h-16 rounded-lg flex items-center justify-center mb-2">
               <h1 className="text-[24px] text-[#FFFDFA]">2026</h1>

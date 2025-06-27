@@ -170,7 +170,7 @@ const MobileMission: React.FC = () => {
             : 'w-auto'
           }
         `}>
-          <Image
+          <Image unoptimized 
             src="/Mision/f.gif"
             alt="MobileMission animation"
             width={500}

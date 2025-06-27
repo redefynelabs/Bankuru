@@ -119,7 +119,7 @@ const Vision = () => {
                 damping: 20
               }}
             >
-              <Image src={content.image} alt={content.title} style={{
+              <Image unoptimized  src={content.image} alt={content.title} style={{
                 width: '100%',
                 height: 'auto',
                 transformOrigin: 'center center'
@@ -152,7 +152,7 @@ const Vision = () => {
                   damping: 20
                 }}
               >
-                <Image src={content.mobileImage} alt={content.title} style={{
+                <Image unoptimized  src={content.mobileImage} alt={content.title} style={{
                   width: '100%',
                   height: 'auto',
                   transformOrigin: 'center center'

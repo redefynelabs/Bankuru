@@ -39,7 +39,7 @@ const About = () => {
 
         {/* 3D mode */}
         <div className="max-w-[50%] ">
-          <Image
+          <Image unoptimized 
             src="https://res.cloudinary.com/dek8wxl7o/image/upload/v1750075876/for-ios_nffr0f.gif"
             alt="building"
             width={1000}

@@ -171,7 +171,7 @@ const TopNav = () => {
           {/* Logo */}
           <div className="flex items-start gap-1">
             <Link href="/">
-              <Image
+              <Image unoptimized 
                 src={CompanyLogo}
                 alt="Company Logo"
                 width={1000}

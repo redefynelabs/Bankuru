@@ -361,7 +361,7 @@ const Journey = () => {
             The Beginning
           </span>
           <div className="flex-shrink-0">
-            <Image
+            <Image unoptimized 
               src={Begining}
               alt="beginning"
               width={100}
@@ -386,7 +386,7 @@ const Journey = () => {
             What's Ahead?
           </span>
           <div className="flex-shrink-0">
-            <Image
+            <Image unoptimized 
               src={Way}
               alt="way ahead"
               width={100}
@@ -412,7 +412,7 @@ const Journey = () => {
             Milestone One
           </span>
           <div className="flex-shrink-0">
-            <Image
+            <Image unoptimized 
               src={One}
               alt="milestone one"
               width={90}

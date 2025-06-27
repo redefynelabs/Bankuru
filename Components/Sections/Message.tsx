@@ -51,7 +51,7 @@ const Message = () => {
           </motion.h1>
           <div className="flex md:flex-row flex-col space-y-9 justify-between items-center w-full">
             <div className="flex flex-row justify-center space-x-2 items-center">
-              <Image src={PlaceHolder} alt='new image' className='md:w-20 md:h-20 w-15 h-15' />
+              <Image unoptimized  src={PlaceHolder} alt='new image' className='md:w-20 md:h-20 w-15 h-15' />
               <div>
                 <h1 className='whitespace-nowrap xl:text-[24px] lg:text-[20px] md:text-[18px] text-[18px] text-[#FFFDFA]'>
                   Koushik

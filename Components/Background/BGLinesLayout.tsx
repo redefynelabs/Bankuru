@@ -15,7 +15,7 @@ const BGLinesLayout: React.FC<BGLinesLayoutProps> = ({ children}) => {
       <div className="absolute inset-0 -z-50 flex flex-col h-full">
         {Array.from({ length: 50 }).map((_, index) => (
           <div key={index} className="relative flex-1 w-full">
-            <Image
+            <Image unoptimized 
               src={BGLine}
               alt={`Background ${index + 1}`}
               className="object-cover w-full"

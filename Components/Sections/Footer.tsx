@@ -228,7 +228,7 @@ const Footer = () => {
             {/* Left side */}
             <div className="bg-[#2D34674A] h-full flex flex-col space-y-5 justify-center items-center rounded-[28px]">
               <div className="flex flex-row gap-5 items-center justify-center p-4">
-                <Image
+                <Image unoptimized 
                   src={CompanyLogo}
                   alt="Company Logo"
                   className="w-[672px] h-[92px] object-contain"
@@ -439,7 +439,7 @@ const Footer = () => {
                 key={index}
                 className="flex items-center justify-center bg-[#121212] rounded-lg  transition-colors duration-200"
               >
-                <Image
+                <Image unoptimized 
                   src={item.image}
                   alt={`Social icon ${index}`}
                   className="h-8 w-8 object-contain"
