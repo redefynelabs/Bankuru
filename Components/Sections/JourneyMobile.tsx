@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Begining, One, Way } from '../ReuseableComponents/Icons';
+import { BeginingImg, WayImg, OneImg } from '../ReuseableComponents/Icons';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -311,8 +311,9 @@ const JourneyMobile = () => {
             <h1 className="text-[24px] text-[#FFFDFA]">The Beginning</h1>
 
             <div className="relative mb-4">
-              <Image unoptimized 
-                src={Begining}
+              <Image  
+              unoptimized
+                src={BeginingImg}
                 alt="beginning"
                 width={120}
                 height={120}
@@ -336,8 +337,9 @@ const JourneyMobile = () => {
           >
             <h1 className="text-[24px] text-[#FFFDFA]">What's Ahead?</h1>
             <div className="relative mb-4">
-              <Image unoptimized 
-                src={Way}
+              <Image  
+              unoptimized
+                src={WayImg}
                 alt="way"
                 width={120}
                 height={120}
@@ -362,8 +364,9 @@ const JourneyMobile = () => {
             <h1 className="text-[24px] text-[#FFFDFA]">Milestone One</h1>
 
             <div className="relative mb-4">
-              <Image unoptimized 
-                src={One}
+              <Image  
+              unoptimized
+                src={OneImg}
                 alt="milestone"
                 width={120}
                 height={120}

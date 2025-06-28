@@ -2,8 +2,6 @@
 export {default as CompanyLogo} from "@/public/companyLogo.png";
 
 
-
-
 //Background
 export const BGLine = 'https://res.cloudinary.com/dek8wxl7o/image/upload/v1749123162/image_17_zqelur.webp'
 // export {default as Circle1} from "@/public/Bg/Ellipse 47.png";
@@ -15,7 +13,6 @@ export {default as ScrollDownIcon} from "@/public/Home/Frame 1321317434.svg";
 export {default as VisionImage1} from "@/public/Vision/image1.png";
 export {default as VisionImage2} from "@/public/Vision/image2.png";
 export {default as VisionImage3} from "@/public/Vision/image3.png";
-
 
 
 //building
@@ -44,4 +41,6 @@ export {default as Begining} from "@/public/Journey/begin.svg"
 export {default as One} from "@/public/Journey/one.svg"
 export {default as Way} from "@/public/Journey/way.svg"
 
-
+export {default as BeginingImg} from "@/public/Journey/beginImg.png"
+export {default as OneImg} from "@/public/Journey/oneImg.png"
+export {default as WayImg} from "@/public/Journey/wayImg.png"
