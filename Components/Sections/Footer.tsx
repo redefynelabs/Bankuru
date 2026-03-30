@@ -646,9 +646,7 @@ const Footer = () => {
               ))}
             </div>
 
-            <p className='pb-5 md:pb-5 text-[12px] text-white'>
-              © Designed &  Developed by  <Link href={'https://www.theinternetcompany.one/'} target="_blank" rel="noopener noreferrer" className='hover:underline'>TIC GLOBAL</Link>.
-            </p>
+          
           </div>
         </div>
       </div>
