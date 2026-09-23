@@ -188,12 +188,12 @@ const JourneyMobile = () => {
       id="journeyMobile-section"
       className="relative min-h-screen w-full overflow-hidden py-8 sm:py-12 md:py-16"
     >
-      <h1 
+      <h2 
         ref={titleRef}
         className="text-[24px] text-[#FFFDFA] font-semibold text-center mb-8 sm:mb-12 md:mb-16 px-4"
       >
         Our Journey
-      </h1>
+      </h2>
 
       {/* SVG Line Container */}
       <div className="absolute left-1/2 transform -translate-x-1/2 top-20 sm:top-24 md:top-32 h-full z-0">
@@ -308,7 +308,7 @@ const JourneyMobile = () => {
             className="flex flex-col items-center text-center space-y-4 py-6 sm:py-8 mt-8"
             style={{ marginTop: "45px" }}
           >
-            <h1 className="text-[24px] text-[#FFFDFA]">The Beginning</h1>
+            <h2 className="text-[24px] text-[#FFFDFA]">The Beginning</h2>
 
             <div className="relative mb-4">
               <Image  
@@ -335,7 +335,7 @@ const JourneyMobile = () => {
             ref={whatsAheadRef}
             className="flex flex-col items-center text-center space-y-4 py-6 sm:py-8"
           >
-            <h1 className="text-[24px] text-[#FFFDFA]">What's Ahead?</h1>
+            <h2 className="text-[24px] text-[#FFFDFA]">What's Ahead?</h2>
             <div className="relative mb-4">
               <Image  
               unoptimized
@@ -361,7 +361,7 @@ const JourneyMobile = () => {
             ref={milestoneOneRef}
             className="flex flex-col items-center text-center space-y-4 py-6 sm:py-8"
           >
-            <h1 className="text-[24px] text-[#FFFDFA]">Milestone One</h1>
+            <h2 className="text-[24px] text-[#FFFDFA]">Milestone One</h2>
 
             <div className="relative mb-4">
               <Image  
@@ -389,7 +389,7 @@ const JourneyMobile = () => {
             className="flex flex-col items-center text-center space-y-2 py-4 sm:py-8"
           >
             <div className="w-24 h-12 xs:w-28 xs:h-14 sm:w-32 sm:h-16 rounded-lg flex items-center justify-center mb-2">
-              <h1 className="text-[24px] text-[#FFFDFA]">Q3 2025</h1>
+              <h2 className="text-[24px] text-[#FFFDFA]">Q3 2025</h2>
             </div>
 
             <p className="text-gray-500 text-xs xs:text-sm leading-relaxed max-w-xs">
@@ -408,7 +408,7 @@ const JourneyMobile = () => {
             className="flex flex-col items-center text-center space-y-2 py-6 sm:py-8 mt-5"
           >
             <div className="w-24 h-12 xs:w-28 xs:h-14 sm:w-32 sm:h-16 rounded-lg flex items-center justify-center mb-2">
-              <h1 className="text-[24px] text-[#FFFDFA]">2026</h1>
+              <h2 className="text-[24px] text-[#FFFDFA]">2026</h2>
             </div>
 
             <p className="text-gray-500 text-xs xs:text-sm leading-relaxed max-w-xs">

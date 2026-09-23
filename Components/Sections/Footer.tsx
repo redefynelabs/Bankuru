@@ -37,18 +37,15 @@ const Footer = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  const currentYear = new Date().getFullYear();
+
   const mobileContents = [
+   
     {
-      link: 'google.com', name: 'Licensing'
+      link: '/terms', name: 'Terms & Conditions'
     },
     {
-      link: 'google.com', name: 'Terms & Condition'
-    },
-    {
-      link: 'google.com', name: 'Privacy Policy'
-    },
-    {
-      link: 'google.com', name: 'Cookie Policy'
+      link: '/privacy', name: 'Privacy Policy'
     },
   ]
 
@@ -253,9 +250,7 @@ const Footer = () => {
                 ))}
               </div>
 
-              <div className='pb-5 md:pb-5 text-white'>
-                © Designed &  Developed by  <Link href={'https://www.theinternetcompany.one/'} target="_blank" rel="noopener noreferrer" className='hover:underline'>TIC GLOBAL</Link>.
-              </div>
+             
             </div>
 
             {/* Right side */}
@@ -447,6 +442,12 @@ const Footer = () => {
               </Link>
             ))}
           </div>
+
+          <div className="w-full border-t border-[#FFFFFF14]">
+            <p className="text-center text-[13px] text-[#807F7D] py-5">
+              © {currentYear} Bankuru Services Private Limited. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -454,9 +455,9 @@ const Footer = () => {
       <div className="relative w-full block md:hidden px-5 -mt-50 ">
         <div className=" h-full flex flex-col space-y-10 justify-center items-start rounded-[28px] px-5 bg-[#2D34674A]">
           <div className="flex flex-row gap-2 items-start justify-center  mt-8 ">
-            <h1 className='font-bold text-[30px] leading-8 text-white'>
+            <h2 className='font-bold text-[30px] leading-8 text-white'>
               Be Part of the Journey
-            </h1>
+            </h2>
           </div>
 
           <div className='flex flex-col text-start text-[#807F7D]'>
@@ -646,7 +647,9 @@ const Footer = () => {
               ))}
             </div>
 
-          
+            <p className="text-center text-[11px] text-[#807F7D] pb-8">
+              © {currentYear} Bankuru Services Private Limited. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

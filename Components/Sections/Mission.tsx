@@ -332,7 +332,7 @@ const Mission: React.FC = () => {
       }}
     >
       {/* Title */}
-      <motion.h1
+      <motion.h2
         ref={ref}
         initial={{ opacity: 0, y: isMobile ? -50 : -30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: isMobile ? -50 : -30 }}
@@ -346,7 +346,7 @@ const Mission: React.FC = () => {
         `}
       >
         Join the Mission
-      </motion.h1>
+      </motion.h2>
 
       {/* Main content */}
       <div className={`

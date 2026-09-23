@@ -223,12 +223,12 @@ const Journey = () => {
       style={{ height: '165vh' }}
     >
       {/* Title */}
-      <h1 
+      <h2 
         ref={titleRef}
         className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-semibold text-center mb-8"
       >
         Journey
-      </h1>
+      </h2>
 
       {/* SVG Glowing Line */}
       <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full h-full">

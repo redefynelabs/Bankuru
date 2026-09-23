@@ -1,37 +1,246 @@
 "use client";
 import React, { useRef } from 'react';
-import { BioAlphaLogo, BuildingImage1, DharmaLogo, FundLensLogo, PlayStoreBadge, AppStoreBadge } from '../ReuseableComponents/Icons';
-import Image from "next/image";
-import { motion, useInView, stagger } from 'framer-motion';
+import Image, { StaticImageData } from "next/image";
+import { motion, useInView } from 'framer-motion';
+import {
+  AppStoreBadge,
+  BioAlphaLogo,
+  BuildingImage1,
+  DharmaLogo,
+  FundLensLogo,
+  PlayStoreBadge,
+} from '../ReuseableComponents/Icons';
+
+type Product = {
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  accent: string;
+  glow: string;
+  logo: StaticImageData;
+  logoAlt: string;
+  logoVariant: 'icon' | 'wordmark';
+  backdrop?: StaticImageData;
+  website?: string;
+  stores?: { playStore: string; appStore: string };
+};
+
+const products: Product[] = [
+  {
+    name: 'Bio Alpha International',
+    category: 'Sustainability',
+    tagline: 'Consulting for a greener tomorrow.',
+    description:
+      'An ecosystem around sustainable consulting and environmental impact, blending expertise with technology.',
+    features: ['Sustainable consulting', 'Environmental impact', 'Tech-led'],
+    accent: '#C9A227',
+    glow: 'rgba(22,120,70,0.35)',
+    logo: BioAlphaLogo,
+    logoAlt: 'Bio Alpha International logo',
+    logoVariant: 'wordmark',
+    backdrop: BuildingImage1,
+    website: 'https://www.thebioalpha.com/',
+  },
+  {
+    name: 'Dharma Scriptures',
+    category: 'Mobile app · AI',
+    tagline: 'Sacred scripture, AI-guided.',
+    description:
+      '97,000+ verses across three sacred texts — word-by-word meaning, transliteration, and AI-guided commentary, all in one app.',
+    features: ['97,000+ verses', 'Transliteration', 'AI commentary'],
+    accent: '#E8C66A',
+    glow: 'rgba(212,160,23,0.30)',
+    logo: DharmaLogo,
+    logoAlt: 'Dharma Scriptures app icon',
+    logoVariant: 'icon',
+    stores: {
+      playStore: 'https://play.google.com/store/apps/details?id=com.bankuru.dharma',
+      appStore: 'https://apps.apple.com/app/dharma-scriptures/id6800773378',
+    },
+  },
+  {
+    name: 'FundLens',
+    category: 'Fintech · Web',
+    tagline: 'Where is smart money flowing this month?',
+    description:
+      'Institutional ownership intelligence for Indian equities — track which AMCs and mutual funds are buying, selling and exiting stocks, straight from AMFI monthly disclosures.',
+    features: ['AMC holdings', 'Ownership scores', 'Sector allocation'],
+    accent: '#10E6A0',
+    glow: 'rgba(16,230,160,0.22)',
+    logo: FundLensLogo,
+    logoAlt: 'FundLens logo',
+    logoVariant: 'icon',
+    website: 'https://thefundlens.com',
+  },
+];
+
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const ProductCard = ({ product, index }: { product: Product; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, margin: '-100px 0px' });
+  const reversed = index % 2 === 1;
+
+  return (
+    <motion.article
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative w-full overflow-hidden rounded-[20px] card-surface"
+    >
+      <div
+        className={`relative flex flex-col ${reversed ? 'md:flex-row-reverse' : 'md:flex-row'} items-stretch md:gap-10 gap-6 xl:p-10 md:p-8 p-5`}
+      >
+        {/* Visual */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative md:w-[42%] w-full md:min-h-[320px] min-h-[220px] flex items-center justify-center overflow-hidden rounded-[20px] border border-[#FFFFFF14] bg-[#0B0B0B]"
+        >
+          {product.backdrop && (
+            <>
+              <Image
+                unoptimized
+                src={product.backdrop}
+                alt=""
+                aria-hidden="true"
+                fill
+                className="object-cover opacity-40 blur-[2px] scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-transparent" />
+            </>
+          )}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-60"
+            style={{ background: `radial-gradient(circle at 50% 55%, ${product.glow}, transparent 65%)` }}
+          />
+
+          {product.logoVariant === 'icon' ? (
+            <Image
+              unoptimized
+              src={product.logo}
+              alt={product.logoAlt}
+              className="relative xl:w-48 md:w-40 w-32 h-auto rounded-[28%] border border-[#FFFFFF1F] shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            <div className="relative rounded-[20px] bg-[#FFFDFA] md:px-8 px-6 md:py-6 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover:scale-105">
+              <Image
+                unoptimized
+                src={product.logo}
+                alt={product.logoAlt}
+                className="xl:w-72 md:w-60 w-52 h-auto"
+              />
+            </div>
+          )}
+        </motion.div>
+
+        {/* Content */}
+        <div className="flex-1 flex flex-col justify-center">
+          <div className="flex items-center gap-3 text-[13px]">
+            <span className="text-[#FFFFFF4D] font-medium tabular-nums">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span className="h-px w-8 bg-[#FFFFFF26]" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#FFFFFF1A] bg-[#FFFFFF08] px-3 py-1 uppercase text-[#BEBCBA] text-[12px]">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: product.accent }} />
+              {product.category}
+            </span>
+          </div>
+
+          <h3 className="xl:text-[40px] lg:text-[34px] md:text-[30px] text-[26px] font-semibold text-white leading-tight mt-5">
+            {product.name}
+          </h3>
+          <p className="md:text-[20px] text-[17px] mt-2" style={{ color: product.accent }}>
+            {product.tagline}
+          </p>
+          <p className="md:text-[17px] text-[15px] text-[#BEBCBA] leading-relaxed mt-4">
+            {product.description}
+          </p>
+
+          <ul className="flex flex-wrap gap-2 mt-6">
+            {product.features.map((feature) => (
+              <li
+                key={feature}
+                className="rounded-full border border-[#FFFFFF1A] bg-[#FFFFFF0A] px-3.5 py-1.5 md:text-[14px] text-[13px] text-[#DEDCD9]"
+              >
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex flex-wrap items-center gap-3 md:mt-8 mt-6">
+            {product.stores && (
+              <>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={product.stores.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Get ${product.name} on Google Play`}
+                >
+                  <Image unoptimized src={PlayStoreBadge} alt="Get it on Google Play" className="md:h-[52px] h-[46px] w-auto" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href={product.stores.appStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Download ${product.name} on the App Store`}
+                >
+                  <Image unoptimized src={AppStoreBadge} alt="Download on the App Store" className="md:h-[52px] h-[46px] w-auto" />
+                </motion.a>
+              </>
+            )}
+            {product.website && (
+              <motion.a
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                href={product.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-[#FFFFFF2E] px-6 h-[46px] text-white text-[15px]"
+              >
+                Visit website
+                <ArrowIcon />
+              </motion.a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
 
 const Building = () => {
-  const containerRef = useRef(null);
-  const titleRef = useRef(null);
-  const block1Ref = useRef(null);
-  const block2Ref = useRef(null);
-  const block3Ref = useRef(null);
-  
-  const isContainerInView = useInView(containerRef, { once: false, margin: '-100px 0px' });
-  const isTitleInView = useInView(titleRef, { once: false, margin: '-100px 0px' });
-  const isBlock1InView = useInView(block1Ref, { once: false, margin: '-100px 0px' });
-  const isBlock2InView = useInView(block2Ref, { once: false, margin: '-100px 0px' });
-  const isBlock3InView = useInView(block3Ref, { once: false, margin: '-100px 0px' });
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: false, margin: '-100px 0px' });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.15,
+        delayChildren: 0.2
       }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -40,212 +249,48 @@ const Building = () => {
     }
   };
 
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
-  const slideInRight = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
   return (
-    <div id='building-section' className="relative bg-transparent w-full px-4 py-10">
+    <section id='building-section' aria-labelledby="building-heading" className="relative bg-transparent w-full md:px-15 px-5 py-10">
       {/* Header Section */}
       <motion.div
-        ref={containerRef}
+        ref={headerRef}
         initial="hidden"
-        animate={isContainerInView ? "show" : "hidden"}
+        animate={isHeaderInView ? "show" : "hidden"}
         variants={containerVariants}
-        className="flex flex-col justify-center items-center space-y-2 text-center px-2"
+        className="flex flex-col justify-center items-center text-center px-2"
       >
-        <motion.h1
-          ref={titleRef}
+        <motion.span
           variants={itemVariants}
-          className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center text-white inline-block gradient-text-alt3"
+          className="inline-flex items-center gap-2 rounded-full border border-[#FFFFFF1A] bg-[#FFFFFF08] backdrop-blur-md px-4 py-1.5 text-[13px] uppercase text-[#BEBCBA]"
         >
-          What We're Building
-        </motion.h1>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#8B93D6]" />
+          Our products
+        </motion.span>
 
-        <motion.p 
+        <motion.h2
+          id="building-heading"
           variants={itemVariants}
-          className="text-base sm:text-lg md:text-[20px] text-[#BEBCBA]"
+          className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center text-white inline-block gradient-text-alt3 mt-5"
         >
-          We're currently developing innovative digital products that combine <br className="hidden sm:inline" />
+          What We&apos;re Building
+        </motion.h2>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-base sm:text-lg md:text-[20px] text-[#BEBCBA] mt-3"
+        >
+          We&apos;re currently developing innovative digital products that combine <br className="hidden sm:inline" />
           real user needs with the power of modern AI
         </motion.p>
       </motion.div>
 
-      {/* Images with Content Overlay */}
-      <div className="flex flex-col items-center justify-center space-y-10 max-w-6xl mx-auto mt-10 w-full">
-        {/* Image Block 1 */}
-        <motion.div
-          ref={block1Ref}
-          initial="hidden"
-          animate={isBlock1InView ? "visible" : "hidden"}
-          variants={slideInLeft}
-          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden"
-        >
-          <Image unoptimized 
-            src={BuildingImage1}
-            alt="AI Tools"
-            className="w-full md:h-full h-[300px] object-cover"
-          />
-          <div className='absolute inset-0 flex md:flex-row flex-col-reverse mt-10 justify-between items-center text-center md:px-24 py-6 space-y-2'>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isBlock1InView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col justify-center md:items-start items-center text-center px-4 md:py-6 py-3 md:space-y-2"
-            >
-              <h2 className="text-xl sm:text-2xl md:text-3xl text-start font-semibold text-white">
-                Bio Alpha International
-              </h2>
-              <p className="text-sm sm:text-base md:text-start text-center text-[#BEBCBA] max-w-md">
-                An ecosystem around sustainable consulting and environmental impact, blending expertise with technology
-              </p>
-              <motion.button
-  whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-  whileTap={{ scale: 0.95 }}
-  className="bg-transparent border-1 border-[#FFFFFF2E] w-[120px] h-[40px] rounded-[30px] md:mt-7 mt-3 cursor-pointer text-white"
-  onClick={() => window.open("https://www.thebioalpha.com/", "_blank", "noopener,noreferrer")}
->
-  View
-</motion.button>
-
-
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isBlock1InView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Image unoptimized  src={BioAlphaLogo} alt="BioAlphaLogo" className='w-80' />
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Image Block 2 */}
-        <motion.div
-          ref={block2Ref}
-          initial="hidden"
-          animate={isBlock2InView ? "visible" : "hidden"}
-          variants={slideInRight}
-          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden border border-[#FFFFFF1A] bg-[radial-gradient(ellipse_at_20%_50%,rgba(212,160,23,0.22),transparent_60%),linear-gradient(135deg,#140f06,#050505)]"
-        >
-          <div className='flex md:flex-row flex-col justify-between items-center text-center md:px-24 px-4 md:py-14 py-8 gap-6'>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isBlock2InView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Image unoptimized src={DharmaLogo} alt="Dharma Scriptures" className='md:w-56 w-32 h-auto rounded-[28px]' />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isBlock2InView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col justify-center md:items-end items-center text-center md:space-y-2 space-y-1"
-            >
-              <h2 className="text-xl sm:text-2xl md:text-3xl md:text-end font-semibold text-white">
-                Dharma Scriptures
-              </h2>
-              <p className="text-base sm:text-lg md:text-end text-[#E8C66A]">
-                Sacred scripture, AI-guided.
-              </p>
-              <p className="text-sm sm:text-base md:text-end text-center text-[#BEBCBA] max-w-md">
-                97,000+ verses across three sacred texts — word-by-word meaning, transliteration,
-                and AI-guided commentary, all in one app.
-              </p>
-              <div className="flex flex-wrap md:justify-end justify-center items-center gap-3 md:mt-7 mt-3">
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://play.google.com/store/apps/details?id=com.bankuru.dharma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Get it on Google Play"
-                >
-                  <Image unoptimized src={PlayStoreBadge} alt="Get it on Google Play" className="md:h-[56px] h-[48px] w-auto" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://apps.apple.com/app/dharma-scriptures/id6800773378"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Download on the App Store"
-                >
-                  <Image unoptimized src={AppStoreBadge} alt="Download on the App Store" className="md:h-[56px] h-[48px] w-auto" />
-                </motion.a>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Image Block 3 */}
-        <motion.div
-          ref={block3Ref}
-          initial="hidden"
-          animate={isBlock3InView ? "visible" : "hidden"}
-          variants={slideInLeft}
-          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden border border-[#FFFFFF1A] bg-[radial-gradient(ellipse_at_80%_50%,rgba(16,230,160,0.18),transparent_60%),linear-gradient(135deg,#050505,#04120d)]"
-        >
-          <div className='flex md:flex-row flex-col-reverse justify-between items-center text-center md:px-24 px-4 md:py-14 py-8 gap-6'>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isBlock3InView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col justify-center md:items-start items-center text-center md:space-y-2 space-y-1"
-            >
-              <h2 className="text-xl sm:text-2xl md:text-3xl md:text-start font-semibold text-white">
-                FundLens
-              </h2>
-              <p className="text-base sm:text-lg md:text-start text-[#10E6A0]">
-                Where is smart money flowing this month?
-              </p>
-              <p className="text-sm sm:text-base md:text-start text-center text-[#BEBCBA] max-w-md">
-                Institutional ownership intelligence for Indian equities — track which AMCs and mutual
-                funds are buying, selling and exiting stocks, straight from AMFI monthly disclosures.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-1 border-[#FFFFFF2E] w-[120px] h-[40px] rounded-[30px] md:mt-7 mt-3 cursor-pointer text-white"
-                onClick={() => window.open("https://thefundlens.com", "_blank", "noopener,noreferrer")}
-              >
-                View
-              </motion.button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isBlock3InView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <Image unoptimized src={FundLensLogo} alt="FundLens" className='md:w-56 w-32 h-auto rounded-[28px]' />
-            </motion.div>
-          </div>
-        </motion.div>
+      {/* Products */}
+      <div className="flex flex-col items-center md:gap-10 gap-6 md:mt-14 mt-10 w-full">
+        {products.map((product, index) => (
+          <ProductCard key={product.name} product={product} index={index} />
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

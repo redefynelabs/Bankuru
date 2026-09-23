@@ -55,7 +55,7 @@ const Vision = () => {
 
   return (
     <div id='vision-section' className="relative flex flex-col md:space-y-15 space-y-5 bg-transparent  w-full">
-      <motion.h1
+      <motion.h2
         ref={ref}
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -63,7 +63,7 @@ const Vision = () => {
         className="font-bold xl:text-[60px] lg:text-[45px] md:text-[35px] text-[30px] text-center  inline-block text-white"
       >
         Our Vision
-      </motion.h1>
+      </motion.h2>
 
       <div className='grid md:grid-cols-2 grid-cols-1 gap-4 md:px-15 px-5'>
         {contents.map((content, index) => (

@@ -21,10 +21,10 @@ export default function Home() {
         <BGCircleLayout>
           <TopNav />
           <Hero />
-          <div className="md:mt-[120px]  xl:mb-[150px]">
+          <div className="md:mt-[120px] mt-6">
             <About />
           </div>
-          <div className=" md:mt-[150px] mt-35 md:mb-[100px] mb-10">
+          <div className="md:mt-[100px] mt-12 md:mb-[100px] mb-10">
             <Vision />
           </div>
           <>
@@ -40,7 +40,7 @@ export default function Home() {
           <div className="md:mt-[140px] md:mb-[150px]">
             <Building />
           </div>
-          <div className=" md:mt-[120px] xl:mb-[200px] lg:mb-[200px] md:mb-[200px] mb-[260px] mt-10">
+          <div className="md:mt-[120px] md:mb-[140px] mb-20 mt-10">
             <Message />
           </div>
           <div className=" md:mb-[10px]  mt-10 hidden sm:block md:block">

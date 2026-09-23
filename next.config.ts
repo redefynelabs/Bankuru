@@ -2,7 +2,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", 
+  output: "export",
+  // Emit /terms/index.html etc. so clean URLs work on static hosting
+  trailingSlash: true,
   images: {
     remotePatterns: [
       {

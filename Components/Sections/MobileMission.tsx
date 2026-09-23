@@ -145,7 +145,7 @@ const MobileMission: React.FC = () => {
         backfaceVisibility: 'hidden'
       }}
     >
-      <h1 className={`
+      <h2 className={`
         font-semibold text-center
         ${isMobile 
           ? 'text-2xl sm:text-3xl leading-tight text-[#FFFDFA]' 
@@ -153,7 +153,7 @@ const MobileMission: React.FC = () => {
         }
       `}>
         Join the Mission
-      </h1>
+      </h2>
       
       <div className={`
         flex w-full items-center
