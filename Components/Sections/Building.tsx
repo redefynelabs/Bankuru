@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from 'react';
-import { BioAlphaLogo, BuildingImage1, BuildingImage2, QuickCook } from '../ReuseableComponents/Icons';
+import { BioAlphaLogo, BuildingImage1, DharmaLogo, FundLensLogo, PlayStoreBadge, AppStoreBadge } from '../ReuseableComponents/Icons';
 import Image from "next/image";
 import { motion, useInView, stagger } from 'framer-motion';
 
@@ -9,11 +9,13 @@ const Building = () => {
   const titleRef = useRef(null);
   const block1Ref = useRef(null);
   const block2Ref = useRef(null);
+  const block3Ref = useRef(null);
   
   const isContainerInView = useInView(containerRef, { once: false, margin: '-100px 0px' });
   const isTitleInView = useInView(titleRef, { once: false, margin: '-100px 0px' });
   const isBlock1InView = useInView(block1Ref, { once: false, margin: '-100px 0px' });
   const isBlock2InView = useInView(block2Ref, { once: false, margin: '-100px 0px' });
+  const isBlock3InView = useInView(block3Ref, { once: false, margin: '-100px 0px' });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -145,43 +147,100 @@ const Building = () => {
           initial="hidden"
           animate={isBlock2InView ? "visible" : "hidden"}
           variants={slideInRight}
-          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden"
+          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden border border-[#FFFFFF1A] bg-[radial-gradient(ellipse_at_20%_50%,rgba(212,160,23,0.22),transparent_60%),linear-gradient(135deg,#140f06,#050505)]"
         >
-          <Image unoptimized 
-            src={BuildingImage2}
-            alt="AI Tools"
-            className="w-full md:h-full h-[320px] object-cover"
-          />
-          <div className='absolute inset-0 flex md:flex-row flex-col  justify-between items-center text-center md:px-24 md:py-6 md:-mt-10 md:space-y-2'>
+          <div className='flex md:flex-row flex-col justify-between items-center text-center md:px-24 px-4 md:py-14 py-8 gap-6'>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isBlock2InView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <Image unoptimized  src={QuickCook} alt="QuickCook" className='md:w-90 md:h-auto w-34 h-[150px]' />
+              <Image unoptimized src={DharmaLogo} alt="Dharma Scriptures" className='md:w-56 w-32 h-auto rounded-[28px]' />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={isBlock2InView ? { opacity: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-col justify-center md:items-end items-center text-center px-4 md:py-6  pb-10 md:space-y-2"
+              className="flex flex-col justify-center md:items-end items-center text-center md:space-y-2 space-y-1"
             >
-              <h2 className="text-xl sm:text-2xl md:text-3xl text-end font-semibold text-white">
-                Quick 2 Cook
+              <h2 className="text-xl sm:text-2xl md:text-3xl md:text-end font-semibold text-white">
+                Dharma Scriptures
               </h2>
+              <p className="text-base sm:text-lg md:text-end text-[#E8C66A]">
+                Sacred scripture, AI-guided.
+              </p>
               <p className="text-sm sm:text-base md:text-end text-center text-[#BEBCBA] max-w-md">
-                Launching August 2025, this mobile app helps busy students and professionals simplify
-                meal prep with smart recipes, pantry tracking, and easy cooking guides—all in one tap
+                97,000+ verses across three sacred texts — word-by-word meaning, transliteration,
+                and AI-guided commentary, all in one app.
+              </p>
+              <div className="flex flex-wrap md:justify-end justify-center items-center gap-3 md:mt-7 mt-3">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="https://play.google.com/store/apps/details?id=com.bankuru.dharma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Get it on Google Play"
+                >
+                  <Image unoptimized src={PlayStoreBadge} alt="Get it on Google Play" className="md:h-[56px] h-[48px] w-auto" />
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="https://apps.apple.com/app/dharma-scriptures/id6800773378"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download on the App Store"
+                >
+                  <Image unoptimized src={AppStoreBadge} alt="Download on the App Store" className="md:h-[56px] h-[48px] w-auto" />
+                </motion.a>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Image Block 3 */}
+        <motion.div
+          ref={block3Ref}
+          initial="hidden"
+          animate={isBlock3InView ? "visible" : "hidden"}
+          variants={slideInLeft}
+          className="relative w-full xl:max-w-6xl lg:max-w-5xl md:max-w-4xl rounded-[20px] overflow-hidden border border-[#FFFFFF1A] bg-[radial-gradient(ellipse_at_80%_50%,rgba(16,230,160,0.18),transparent_60%),linear-gradient(135deg,#050505,#04120d)]"
+        >
+          <div className='flex md:flex-row flex-col-reverse justify-between items-center text-center md:px-24 px-4 md:py-14 py-8 gap-6'>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isBlock3InView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="flex flex-col justify-center md:items-start items-center text-center md:space-y-2 space-y-1"
+            >
+              <h2 className="text-xl sm:text-2xl md:text-3xl md:text-start font-semibold text-white">
+                FundLens
+              </h2>
+              <p className="text-base sm:text-lg md:text-start text-[#10E6A0]">
+                Where is smart money flowing this month?
+              </p>
+              <p className="text-sm sm:text-base md:text-start text-center text-[#BEBCBA] max-w-md">
+                Institutional ownership intelligence for Indian equities — track which AMCs and mutual
+                funds are buying, selling and exiting stocks, straight from AMFI monthly disclosures.
               </p>
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-transparent border-1 border-[#FFFFFF2E] w-[161px] h-[41px] rounded-[30px] md:mt-7 mt-3 cursor-pointer text-white"
-                onClick={() => window.open("https://quick2cook-launch-page.lovable.app/", "_blank", "noopener,noreferrer")}
+                className="bg-transparent border-1 border-[#FFFFFF2E] w-[120px] h-[40px] rounded-[30px] md:mt-7 mt-3 cursor-pointer text-white"
+                onClick={() => window.open("https://thefundlens.com", "_blank", "noopener,noreferrer")}
               >
-                Keep me updated
+                View
               </motion.button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isBlock3InView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              <Image unoptimized src={FundLensLogo} alt="FundLens" className='md:w-56 w-32 h-auto rounded-[28px]' />
             </motion.div>
           </div>
         </motion.div>

@@ -17,9 +17,11 @@ export {default as VisionImage3} from "@/public/Vision/image3.png";
 
 //building
 export {default as BuildingImage1} from "@/public/Building/image3.png";
-export {default as BuildingImage2} from "@/public/Building/image4.png";
+export {default as DharmaLogo} from "@/public/Building/dharma.png";
 export {default as BioAlphaLogo} from "@/public/Building/bioalpha.png";
-export {default as QuickCook} from "@/public/Building/quickcook.png";
+export {default as FundLensLogo} from "@/public/Building/fundlens.png";
+export {default as PlayStoreBadge} from "@/public/play-store.png";
+export {default as AppStoreBadge} from "@/public/app-store.png";
 
 //Message
 export {default as PlaceHolder} from "@/public/Message/image.png";
