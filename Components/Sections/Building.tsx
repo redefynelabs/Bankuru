@@ -55,6 +55,7 @@ const products: Product[] = [
     logo: DharmaLogo,
     logoAlt: 'Dharma Scriptures app icon',
     logoVariant: 'icon',
+    website: 'https://dharmascriptures.com/',
     stores: {
       playStore: 'https://play.google.com/store/apps/details?id=com.bankuru.dharma',
       appStore: 'https://apps.apple.com/app/dharma-scriptures/id6800773378',
@@ -178,6 +179,19 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
           </ul>
 
           <div className="flex flex-wrap items-center gap-3 md:mt-8 mt-6">
+            {product.website && (
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href={product.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-black font-semibold px-6  h-[46px] text-[15px] transition-colors hover:bg-[#E8E6E3]"
+              >
+                Visit website
+                <ArrowIcon />
+              </motion.a>
+            )}
             {product.stores && (
               <>
                 <motion.a
@@ -201,19 +215,6 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
                   <Image unoptimized src={AppStoreBadge} alt="Download on the App Store" className="md:h-[52px] h-[46px] w-auto" />
                 </motion.a>
               </>
-            )}
-            {product.website && (
-              <motion.a
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-                whileTap={{ scale: 0.95 }}
-                href={product.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[#FFFFFF2E] px-6 h-[46px] text-white text-[15px]"
-              >
-                Visit website
-                <ArrowIcon />
-              </motion.a>
             )}
           </div>
         </div>

@@ -130,14 +130,14 @@ const About = () => {
             aria-hidden="true"
             className="absolute inset-[10%] rounded-full bg-[#2D3467] opacity-50 blur-[90px]"
           />
-          <div className="relative rounded-[28px] border border-[#FFFFFF1A] bg-[#FFFFFF05] overflow-hidden">
+          <div className="relative ">
             <Image
               unoptimized
               src="https://res.cloudinary.com/dek8wxl7o/image/upload/v1750075876/for-ios_nffr0f.gif"
               alt="Animated 3D model of the Bankuru Services studio building"
               width={1000}
               height={1000}
-              className="object-cover w-full md:h-[500px] h-[280px]"
+              className=" object-contain w-full"
               style={{
                 willChange: 'auto',
                 backfaceVisibility: 'hidden'
